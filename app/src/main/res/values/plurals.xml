@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="uniqueness">
+        <item quantity="zero">text_string</item>
+        <item quantity="other">text_string</item>
+    </plurals>
+</resources>
