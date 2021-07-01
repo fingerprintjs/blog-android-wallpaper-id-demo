@@ -1,2 +1,2 @@
 # WallpaperID
-Android users identification using wallpaper image
+Identification of android devices using wallpaper image
