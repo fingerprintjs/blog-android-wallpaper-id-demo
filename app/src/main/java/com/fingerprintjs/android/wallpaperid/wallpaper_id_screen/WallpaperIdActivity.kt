@@ -1,4 +1,4 @@
-package com.fingerprintjs.android.wallpaperid
+package com.fingerprintjs.android.wallpaperid.wallpaper_id_screen
 
 
 import android.app.WallpaperManager
@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import com.fingerprintjs.android.fingerprint.Configuration
 import com.fingerprintjs.android.fingerprint.FingerprinterFactory
+import com.fingerprintjs.android.wallpaperid.R
 
 
 class WallpaperIdActivity : AppCompatActivity(), WallpaperIdRouter {
@@ -32,9 +33,9 @@ class WallpaperIdActivity : AppCompatActivity(), WallpaperIdRouter {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         presenter.detachView()
         presenter.detachRouter()
+        super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -56,6 +57,19 @@ class WallpaperIdActivity : AppCompatActivity(), WallpaperIdRouter {
 
     override fun openLink(url: String) {
         openLinkInExternalBrowser(url)
+    }
+
+    override fun refresh() {
+        presenter.detachView()
+        presenter.detachRouter()
+        init(null)
+        presenter.attachRouter(this)
+        presenter.attachView(
+            WallpaperIdViewImpl(
+                this
+            )
+        )
+        presenter.update()
     }
 
     private fun openLinkInExternalBrowser(link: String) {

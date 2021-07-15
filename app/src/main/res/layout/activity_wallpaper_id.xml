@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    tools:context=".wallpaper_id_screen.WallpaperIdActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:orientation="vertical"
-        tools:context=".WallpaperIdActivity">
+        android:layout_height="match_parent"
+        android:background="@color/colorLightGray">
 
-        <include layout="@layout/card_wallpaper_id"/>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_main">
 
-        <include layout="@layout/card_lock_screen_wallpaper_colors"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <include layout="@layout/card_system_wallpaper_colors"/>
+                <include layout="@layout/card_wallpaper_image" />
 
-        <include layout="@layout/card_wallpaper_image"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</ScrollView>
+                <include layout="@layout/card_lock_screen_wallpaper_colors" />
+
+                <include layout="@layout/card_system_wallpaper_colors" />
+
+                <include layout="@layout/card_wallpaper_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

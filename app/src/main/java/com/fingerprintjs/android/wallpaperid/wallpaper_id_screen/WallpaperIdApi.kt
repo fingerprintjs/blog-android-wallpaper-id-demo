@@ -1,4 +1,4 @@
-package com.fingerprintjs.android.wallpaperid
+package com.fingerprintjs.android.wallpaperid.wallpaper_id_screen
 
 
 import android.os.Parcelable

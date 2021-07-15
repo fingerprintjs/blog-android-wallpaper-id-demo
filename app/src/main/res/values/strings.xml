@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WallpaperID</string>
+    <string name="app_name">Wallpaper ID</string>
     <string name="id_text_view">ID: %s</string>
     <string name="system_screen_colors_description">System screen colors</string>
     <string name="wallpaper_description">Wallpaper</string>
@@ -9,4 +9,7 @@
     <string name="source_code_btn_text">Source</string>
     <string name="unique_wallpaper_description">It is unique among %d tests so far.</string>
     <string name="not_unique_wallpaper_description">%1$d users have the same ID among %2$d tests so far.</string>
+    <string name="demo_description">This demo generates an accurate cross-app identifier by checking wallpaper images on your device. Works on every Android version starting from 5.0 and doesn\'t require any permissions.</string>
+    <string name="agreement">by clicking this button I agree to the terms.</string>
+    <string name="get_started_btn_text">Get started</string>
 </resources>

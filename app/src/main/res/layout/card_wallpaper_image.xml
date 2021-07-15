@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/wallpaper_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/wallpaper_height"
             android:contentDescription="@null"
             android:scaleType="fitXY" />
     </FrameLayout>

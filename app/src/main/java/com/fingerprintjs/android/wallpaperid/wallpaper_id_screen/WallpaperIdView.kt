@@ -1,4 +1,4 @@
-package com.fingerprintjs.android.wallpaperid
+package com.fingerprintjs.android.wallpaperid.wallpaper_id_screen
 
 
 import android.app.Activity
@@ -12,7 +12,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
-import com.google.android.material.progressindicator.CircularProgressIndicator
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.fingerprintjs.android.wallpaperid.R
 
 
 interface WallpaperIdView {
@@ -25,6 +26,7 @@ interface WallpaperIdView {
     fun hideWallpaperColors()
     fun setOnSourceButtonClickedListener(listener: () -> (Unit))
     fun setOnArticleButtonClickedListener(listener: () -> (Unit))
+    fun setOnRefreshListener(listener: () -> Unit)
 }
 
 class WallpaperIdViewImpl(
@@ -57,6 +59,8 @@ class WallpaperIdViewImpl(
     private val sourceButton = activity.findViewById<TextView>(R.id.github_button)
     private val articleButton = activity.findViewById<TextView>(R.id.read_more_button)
 
+    private val swipeToRefreshView = activity.findViewById<SwipeRefreshLayout>(R.id.swipe_to_refresh)
+
     init {
         idTextView.hide()
         progressBar.show()
@@ -66,6 +70,7 @@ class WallpaperIdViewImpl(
         progressBar.hide()
         idTextView.show()
         idTextView.text = id
+        swipeToRefreshView.isRefreshing = false
     }
 
     override fun setUniqueness(sameIdCount: Int, totalIdCount: Int) {
@@ -122,6 +127,12 @@ class WallpaperIdViewImpl(
 
     override fun setOnArticleButtonClickedListener(listener: () -> Unit) {
         articleButton.setOnClickListener { listener.invoke() }
+    }
+
+    override fun setOnRefreshListener(listener: () -> Unit) {
+        swipeToRefreshView.setOnRefreshListener {
+            listener.invoke()
+        }
     }
 }
 

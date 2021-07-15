@@ -15,7 +15,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="@dimen/colors_height"
             android:orientation="horizontal">
 
             <FrameLayout

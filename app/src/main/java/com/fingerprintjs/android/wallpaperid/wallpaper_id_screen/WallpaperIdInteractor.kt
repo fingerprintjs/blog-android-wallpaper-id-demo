@@ -1,6 +1,7 @@
-package com.fingerprintjs.android.wallpaperid
+package com.fingerprintjs.android.wallpaperid.wallpaper_id_screen
 
 
+import com.fingerprintjs.android.wallpaperid.API_ENDPOINT_URL
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

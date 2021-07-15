@@ -1,10 +1,13 @@
-package com.fingerprintjs.android.wallpaperid
+package com.fingerprintjs.android.wallpaperid.wallpaper_id_screen
 
 
 import android.os.Build
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
 import com.fingerprintjs.android.fingerprint.Fingerprinter
+import com.fingerprintjs.android.fingerprint.signal_providers.StabilityLevel
+import com.fingerprintjs.android.wallpaperid.ARTICLE_PAGE_URL
+import com.fingerprintjs.android.wallpaperid.GITHUB_PAGE_URL
 import kotlinx.parcelize.Parcelize
 
 
@@ -53,14 +56,16 @@ class WallpaperIdPresenterImpl(
     override fun update() {
         if ((wallpaperId == null) or (uniquenessResponse == null)) {
             wallpaperIdGenerator.getId { wallpaperId ->
-                fingerprinter.getDeviceId {
-                    interactor.getWallpaperUniquinessInfo(
-                        it.deviceId,
-                        wallpaperId
-                    ) { uniquenessResponse ->
-                        this.wallpaperId = wallpaperId
-                        this.uniquenessResponse = uniquenessResponse
-                        updateId(wallpaperId, uniquenessResponse)
+                fingerprinter.getDeviceId { deviceId ->
+                    getFingerprints(fingerprinter) { fingerprints ->
+                        interactor.getWallpaperUniquinessInfo(
+                            "${deviceId.deviceId}$DELIMITER$fingerprints",
+                            wallpaperId
+                        ) { uniquenessResponse ->
+                            this.wallpaperId = wallpaperId
+                            this.uniquenessResponse = uniquenessResponse
+                            updateId(wallpaperId, uniquenessResponse)
+                        }
                     }
                 }
             }
@@ -80,6 +85,20 @@ class WallpaperIdPresenterImpl(
         subscribeToView()
     }
 
+    private fun getFingerprints(fingerprinter: Fingerprinter, listener: (String) -> (Unit)) {
+        val fingerprintSb = StringBuilder()
+        fingerprinter.getFingerprint(StabilityLevel.STABLE) { stableFp ->
+            fingerprintSb.append(stableFp.fingerprint).append(DELIMITER)
+            fingerprinter.getFingerprint(StabilityLevel.OPTIMAL) { optimalFp ->
+                fingerprintSb.append(optimalFp.fingerprint).append(DELIMITER)
+                fingerprinter.getFingerprint(StabilityLevel.UNIQUE) { uniqueFp ->
+                    fingerprintSb.append(uniqueFp.fingerprint)
+                    listener.invoke(fingerprintSb.toString())
+                }
+            }
+        }
+    }
+
     private fun subscribeToView() {
         view?.apply {
             setOnArticleButtonClickedListener {
@@ -87,6 +106,9 @@ class WallpaperIdPresenterImpl(
             }
             setOnSourceButtonClickedListener {
                 router?.openLink(GITHUB_PAGE_URL)
+            }
+            setOnRefreshListener {
+                router?.refresh()
             }
         }
     }
@@ -138,3 +160,5 @@ class WallpaperIdPresenterImpl(
         this.router = null
     }
 }
+
+private const val DELIMITER = ":"
