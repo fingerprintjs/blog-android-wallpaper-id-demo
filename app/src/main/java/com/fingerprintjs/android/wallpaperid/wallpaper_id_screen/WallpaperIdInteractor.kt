@@ -38,9 +38,7 @@ class WallpaperIdInteractorImpl: WallpaperIdInteractor {
                 handleResponse(response, listener)
             }
 
-            override fun onFailure(call: Call<UniquenessResponse>, t: Throwable) {
-                // Do nothing
-            }
+            override fun onFailure(call: Call<UniquenessResponse>, t: Throwable) {}
         })
     }
 

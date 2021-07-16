@@ -56,8 +56,8 @@ class WallpaperIdViewImpl(
     private val wallpaperImageView = activity.findViewById<ImageView>(R.id.wallpaper_image)
     private val imageViewContainer = activity.findViewById<CardView>(R.id.image_view_container)
 
-    private val sourceButton = activity.findViewById<TextView>(R.id.github_button)
-    private val articleButton = activity.findViewById<TextView>(R.id.read_more_button)
+    private val sourceButton = activity.findViewById<View>(R.id.github_button)
+    private val articleButton = activity.findViewById<View>(R.id.read_more_button)
 
     private val swipeToRefreshView = activity.findViewById<SwipeRefreshLayout>(R.id.swipe_to_refresh)
 

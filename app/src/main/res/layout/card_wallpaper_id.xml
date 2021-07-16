@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="56dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:layout_marginTop="56dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -31,9 +31,9 @@
                 android:id="@+id/progress_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:indeterminate="true"
-                android:layout_gravity="center" />
+                android:indeterminate="true" />
 
             <TextView
                 android:id="@+id/id_text_view"
@@ -42,8 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
                 android:layout_marginVertical="8dp"
-                android:textColor="@color/black"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 tools:text="f6fc84c9f21c24907d6bee6eec38cabab5fa9a7be8c4a7827fe9e56f245bd2d5" />
 
         </FrameLayout>
@@ -51,11 +51,11 @@
         <TextView
             android:id="@+id/uniqueness_text_view"
             style="@style/TextAppearance.MaterialComponents.Body1"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="8dp" />
+            android:layout_marginVertical="8dp"
+            android:textAlignment="center" />
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -65,20 +65,20 @@
             android:orientation="vertical">
 
             <FrameLayout
+                android:id="@+id/read_more_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:foreground="@drawable/btn_ripple">
+                android:clickable="true"
+                android:foreground="@drawable/btn_ripple"
+                android:focusable="true">
 
                 <TextView
-                    android:id="@+id/read_more_button"
                     style="@style/TextAppearance.MaterialComponents.Button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingVertical="16dp"
                     android:background="@drawable/bg_read_more_btn"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:paddingVertical="16dp"
                     android:text="@string/read_more_txt"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
@@ -86,30 +86,30 @@
 
 
             <FrameLayout
+                android:id="@+id/github_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:background="@drawable/bg_github_btn"
-                android:foreground="@drawable/btn_ripple">
+                android:clickable="true"
+                android:foreground="@drawable/btn_ripple"
+                android:focusable="true">
 
                 <TextView
-                    android:id="@+id/github_button"
                     style="@style/TextAppearance.MaterialComponents.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="16dp"
                     android:text="@string/source_code_btn_text"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="-56dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="-56dp"
                     android:src="@drawable/ic_github_logo_small" />
 
             </FrameLayout>
