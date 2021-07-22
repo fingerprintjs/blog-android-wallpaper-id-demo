@@ -27,14 +27,14 @@ class WallpaperIdGeneratorImpl(
             listener.invoke(
                 hasher.hash(
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1) {
-                        calculateWallpaperBytes()
-                    } else calculateColorsBytes()
+                        extractWallpaperBytes()
+                    } else extractColorsBytes()
                 )
             )
         }
     }
 
-    private fun calculateWallpaperBytes(): ByteArray {
+    private fun extractWallpaperBytes(): ByteArray {
         val imageBitmap = wallpaperInfoProvider.getWallpaperBitmap() ?: return ByteArray(0)
         val stream = ByteArrayOutputStream()
         imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
@@ -42,7 +42,7 @@ class WallpaperIdGeneratorImpl(
     }
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
-    private fun calculateColorsBytes(): ByteArray {
+    private fun extractColorsBytes(): ByteArray {
         val colorComponents = LinkedList<Int>()
 
         colorComponents.addAll(
@@ -73,7 +73,7 @@ class WallpaperIdGeneratorImpl(
     }
 }
 
-private class Sha256Hasher() {
+private class Sha256Hasher {
     fun hash(bytes: ByteArray): String {
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
