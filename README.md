@@ -7,7 +7,7 @@
 # WallpaperID
 The source code of the demo application that calculates an ID for a device using wallpaper images. The ID is scoped to a device and will be identicall in any application.
 
-This repository is created for research and educational purposes only. Consider reading the original [article](https://https://fingerprintjs.com/blog/wallpaper-id) about the research.
+This repository is created for research and educational purposes only. Consider reading the original [article](https://fingerprintjs.com/blog/wallpaper-id) about the research.
 
 ## License
 
